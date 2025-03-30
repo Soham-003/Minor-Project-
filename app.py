@@ -8,7 +8,7 @@ app = Flask(__name__)
 def predicting_fertilizer():
     try:
         if request.method == 'POST':
-            # Extract form data
+           
             data = CustomData(
                 N=float(request.form.get('nitrogen')),
                 P=float(request.form.get('phosphorous')),
@@ -20,7 +20,7 @@ def predicting_fertilizer():
                 crop=request.form.get('crop_type')
             )
 
-            # Convert data to DataFrame and predict
+            
             pred_df = data.get_data_as_dataframe()
             predict_pipeline = PredictPipeline()
             results = predict_pipeline.predict(pred_df)
@@ -34,14 +34,14 @@ def predicting_fertilizer():
             elif(results==5): results = "20-20"
             else: results = "Urea"
 
-            # Return the index.html with fertilizer prediction
+            
             return render_template('index.html', fertilizer=results)
 
     except Exception as e:
         logging.error(f"Error in prediction: {e}")
         return render_template('index.html', error="Something went wrong. Please try again.")
 
-    # Ensure we always return a response
+    
     return render_template('index.html')
 
 if __name__ == "__main__":
