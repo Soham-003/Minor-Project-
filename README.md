@@ -40,7 +40,7 @@ This project is part of my **minor project** and focuses on leveraging technolog
 ## 🚀 Usage
 1. Start the backend server:
     ```bash
-    python manage.py runserver
+    python app.py
     ```
 2. Start the frontend:
     ```bash
