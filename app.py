@@ -4,7 +4,11 @@ from src.logger import logging
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/predict-fertilizer', methods=['GET', 'POST'])
 def predicting_fertilizer():
     try:
         if request.method == 'POST':

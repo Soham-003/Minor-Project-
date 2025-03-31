@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Farmers</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://source.unsplash.com/1600x900/?farm,field,greenery') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 80, 0, 0.6);
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            margin: 10px;
+            font-size: 1.4rem;
+            color: white;
+            text-decoration: none;
+            background-color: #4CAF50;
+            border-radius: 8px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #388E3C;
+            transform: scale(1.05);
+        }
+
+        .watermark {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Welcome Farmers</h1>
+        <p>Optimize your farming with smart recommendations</p>
+        <a href="/predict-fertilizer" class="btn">Fertilizer Recommendation</a>
+        <a href="/irrigation-system" class="btn">Irrigation System</a>
+    </div>
+    <div class="watermark">Smart Agri Solutions</div>
+</body>
+</html>
