@@ -27,7 +27,7 @@ class ModelTrainer:
             )
 
             model = LogisticRegression(
-                C = 2,
+                C = 0.5,
                 max_iter = 100,
                 penalty = 'l2',
                 solver = 'newton-cg'

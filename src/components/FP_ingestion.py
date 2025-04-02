@@ -24,7 +24,7 @@ class DataIngestion:
 
     def initiate_config(self):
        try:
-           df = pd.read_csv('notebooks/data/Fertilizer Prediction.csv')     
+           df = pd.read_csv('FP_notebooks/data/Fertilizer Prediction.csv')     
            logging.info("Data Ingestion Initiated")
 
            os.makedirs(os.path.dirname(self.ingestion_config.raw_path), exist_ok=True)
