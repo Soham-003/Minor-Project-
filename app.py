@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from src.pipeline.FP_predict_pipeline import PredictPipeline, CustomData
+from src.pipeline.IR_predict_pipeline import IR_PredictPipeline, IR_CustomData
 from src.logger import logging
 
 app = Flask(__name__)
@@ -47,6 +48,39 @@ def predicting_fertilizer():
 
     
     return render_template('index.html')
+
+@app.route('/irrigation-system', methods=['GET', 'POST'])
+def predicting_irrigation():
+    try:
+        if request.method == 'POST':
+           
+            data =IR_CustomData(
+                Soil_Moisture=float(request.form.get('Soil_Moisture')),
+                Temperature=float(request.form.get('Temperature')),
+                Soil_Humidity=float(request.form.get('Soil_Humidity')),
+                Air_Humidity=float(request.form.get('Air_Humidity')),
+                Pressure=float(request.form.get('Pressure')),
+            )
+
+            
+            pred_df = data.get_data_as_dataframe()
+            predict_pipeline = IR_PredictPipeline()
+            results = predict_pipeline.predict(pred_df)
+            logging.info(f"Prediction: {results}")
+
+            if(results==0): results = "DO NOT IRRIGATE"
+            else: results = "IRRIGATE"
+            
+
+            
+            return render_template('index2.html', irrigation=results)
+
+    except Exception as e:
+        logging.error(f"Error in prediction: {e}")
+        return render_template('index.html', error="Something went wrong. Please try again.")
+
+    
+    return render_template('index2.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

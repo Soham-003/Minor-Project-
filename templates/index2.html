@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Irrigation Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+        }
+
+        .container {
+            background-color: rgba(0, 100, 0, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 50px;
+            box-shadow: 0px 5px 20px rgba(0,0,0,0.3);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .irrigate {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .do-not-irrigate {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container col-md-6 mx-auto">
+        <h2 class="text-center mb-4">Smart Irrigation Predictor</h2>
+        <form method="POST" action="/irrigation-system">
+            <div class="mb-3">
+                <label for="Soil_Moisture">Soil Moisture (%)</label>
+                <input type="number" step="any" name="Soil_Moisture" id="Soil_Moisture" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Temperature">Temperature (°C)</label>
+                <input type="number" step="any" name="Temperature" id="Temperature" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Soil_Humidity">Soil Humidity (%)</label>
+                <input type="number" step="any" name="Soil_Humidity" id="Soil_Humidity" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Air_Humidity">Air Humidity (%)</label>
+                <input type="number" step="any" name="Air_Humidity" id="Air_Humidity" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Pressure">Pressure (KPa)</label>
+                <input type="number" step="any" name="Pressure" id="Pressure" class="form-control" required>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-warning">Predict Irrigation</button>
+            </div>
+        </form>
+
+        {% if irrigation %}
+            <div class="result-box mt-4 text-center {% if irrigation == 'IRRIGATE' %}irrigate{% else %}do-not-irrigate{% endif %}">
+                <strong>Prediction:</strong> {{ irrigation }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
